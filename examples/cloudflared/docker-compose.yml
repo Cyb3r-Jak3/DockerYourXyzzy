@@ -1,0 +1,42 @@
+version: "3.7"
+
+services:
+
+  pyx:
+    image: ghcr.io/cyb3r-jak3/dockeryourxyzzy:on-demand
+    ports:
+     - "8080:8080"
+    networks:
+      - pyx-net
+    environment:
+      - TOMCAT_USER=tomcat_user
+      - TOMCAT_PASSWORD=tomcat_password
+      - DB_NAME=pyx
+      - DB_USER=pyx
+      - DB_PASSWORD=CorrectHorseBatteryStaple
+
+  postgres:
+    image: "postgres:alpine"
+    volumes:
+      - ./data/pgdata:/var/lib/postgresql/data
+    networks:
+      - pyx-net
+    environment:
+      - POSTGRES_DB=pyx
+      - POSTGRES_USER=pyx
+      - POSTGRES_PASSWORD=CorrectHorseBatteryStaple
+
+  cloudflared:
+      image: cloudflare/cloudflared:2021.10.5
+      user: root
+      command: tunnel run
+      volumes:
+          - './config:/root/.cloudflared'
+      ports:
+        - "8090:8090"
+      networks:
+      - pyx-net
+
+
+networks:
+  pyx-net:
