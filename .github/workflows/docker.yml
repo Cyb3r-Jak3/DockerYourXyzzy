@@ -19,7 +19,7 @@ jobs:
       strategy:
         fail-fast: false
         matrix:
-          imageType: ["pre-built", "on-demand"]
+          imageType: ["prebuilt", "on-demand"]
       steps:
 
       - name: Login to Docker
