@@ -49,8 +49,6 @@ jobs:
         uses: docker/metadata-action@v3.6.0
         with:
           images: cyb3rjak3/dockeryourxyzzy,ghcr.io/cyb3r-jak3/dockeryourxyzzy
-          tags: |
-            type=sha
           labels: |
             org.label-schema.vcs-url=https://github.com/Cyb3r-Jak3/DockerYourXyzzy.git
             org.label-schema.schema-version=1.0.0-rc1
