@@ -37,9 +37,9 @@ target "on-demand" {
 }
 
 target "prebuilt-release" {
-   inherits = ["prebuilt", "docker-metadata-action"]
+   inherits = ["docker-metadata-action", "prebuilt"]
 }
 
 target "on-demand-release" {
-    inherits = ["on-demand", "docker-metadata-action"]
+    inherits = ["docker-metadata-action", "on-demand"]
 }

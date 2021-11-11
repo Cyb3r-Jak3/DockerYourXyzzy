@@ -68,4 +68,5 @@ jobs:
           set: |
             *.cache-from=type=gha,scope=buildx-${{matrix.imageType}}
             *.cache-to=type=gha,mode=max,scope=buildx-${{matrix.imageType}}
-
+        env:
+          DOCKER_META_VERSION: ${{ steps.meta.outputs.version }}
