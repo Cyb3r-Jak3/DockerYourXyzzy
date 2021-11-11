@@ -1,0 +1,6 @@
+tunnel: <tunnel id>
+credentials-file: /root/.cloudflared/<tunnel id>.json
+ingress:
+  - hostname: cards.<your domain here>
+    service: http://pyx:8080
+  - service: http_status:404

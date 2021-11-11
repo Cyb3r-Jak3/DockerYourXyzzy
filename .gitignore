@@ -1,3 +1,5 @@
 output/
 .pyx/
 .pgdata/
+data/
+.vscode/
