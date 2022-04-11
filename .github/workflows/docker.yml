@@ -46,7 +46,7 @@ jobs:
 
       - name: Docker Meta
         id: meta
-        uses: docker/metadata-action@v3.6.2
+        uses: docker/metadata-action@v3.7.0
         with:
           images: cyb3rjak3/dockeryourxyzzy,ghcr.io/cyb3r-jak3/dockeryourxyzzy
           labels: |
