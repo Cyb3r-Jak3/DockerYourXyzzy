@@ -2,13 +2,7 @@ variable "DOCKER_META_VERSION" {
     default = "dev"
 }
 
-// Special target: https://github.com/docker/metadata-action#bake-definition
-target "docker-metadata-action" {
-    platforms = [
-        "linux/amd64",
-        "linux/arm64",
-    ]
-}
+
 
 target "prebuilt" {
     dockerfile = "Dockerfile"
@@ -33,6 +27,13 @@ target "on-demand" {
         "cyb3rjak3/dockeryourxyzzy:on-demand-${DOCKER_META_VERSION}",
         "ghcr.io/cyb3r-jak3/dockeryourxyzzy:on-demand",
         "ghcr.io/cyb3r-jak3/dockeryourxyzzy:on-demand-${DOCKER_META_VERSION}"
+    ]
+}
+
+// Special target: https://github.com/docker/metadata-action#bake-definition
+target "docker-metadata-action" {
+    platforms = [
+        "linux/amd64",
     ]
 }
 

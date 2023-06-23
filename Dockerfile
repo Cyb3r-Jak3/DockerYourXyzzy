@@ -1,17 +1,17 @@
-FROM davidcaste/alpine-tomcat:jdk8tomcat7 as base
+FROM cyb3rjak3/alpine-tomcat:11-jdk-10.1.8 as base
 
 # MAVEN
-ARG MAVEN_VERSION=3.5.4
+ARG MAVEN_VERSION=3.9.2
 ENV USER_HOME_DIR /root
-ARG SHA=ce50b1c91364cb77efe3776f756a6d92b76d9038b0a0782f7d53acf1e997a14d
-ARG BASE_URL=https://apache.osuosl.org/maven/maven-3/${MAVEN_VERSION}/binaries
+ARG SHA=900bdeeeae550d2d2b3920fe0e00e41b0069f32c019d566465015bdd1b3866395cbe016e22d95d25d51d3a5e614af2c83ec9b282d73309f644859bbad08b63db
+ARG BASE_URL=https://dlcdn.apache.org/maven/maven-3/${MAVEN_VERSION}/binaries
 ARG MAVEN_HOME=/usr/share/maven
 ARG MAVEN_CONFIG="$USER_HOME_DIR/.m2"
 
 RUN apk add --no-cache curl tar procps \
  && mkdir -p /usr/share/maven/ref \
  && curl -fsSL -o /tmp/apache-maven.tar.gz "${BASE_URL}/apache-maven-${MAVEN_VERSION}-bin.tar.gz" \
- && echo "${SHA} /tmp/apache-maven.tar.gz" | sha256sum -c - || true \
+ && echo "${SHA} /tmp/apache-maven.tar.gz" | sha512sum -c - || true \
  && tar -xzf /tmp/apache-maven.tar.gz -C /usr/share/maven --strip-components=1 \
  && rm -f /tmp/apache-maven.tar.gz \
  && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
