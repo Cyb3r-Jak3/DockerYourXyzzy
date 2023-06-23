@@ -1,4 +1,4 @@
-FROM davidcaste/alpine-tomcat:jdk8tomcat7 as base
+FROM cyb3rjak3/alpine-tomcat:11-jdk-10.1.8 as base
 
 # MAVEN
 ARG MAVEN_VERSION=3.9.2
