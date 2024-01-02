@@ -11,13 +11,13 @@ on:
       - "docker-bake.hcl"
       - "Dockerfile"
 
-jobs:
+permissions:
+  contents: read
+  packages: write
 
+jobs:
   Docker:
       runs-on: ubuntu-latest
-      permissions:
-        contents: read
-        packages: write
       strategy:
         fail-fast: false
         matrix:
