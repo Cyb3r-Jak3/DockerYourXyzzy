@@ -2,8 +2,6 @@ variable "DOCKER_META_VERSION" {
     default = "dev"
 }
 
-
-
 target "prebuilt" {
     dockerfile = "Dockerfile"
     target = "prebuilt"

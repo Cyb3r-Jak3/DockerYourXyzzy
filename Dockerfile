@@ -1,17 +1,17 @@
-FROM ghcr.io/cyb3r-jak3/alpine-tomcat:11-jdk-10.1.8 as base
+FROM ghcr.io/cyb3r-jak3/alpine-tomcat:11-jdk-10.1.17 as base
 
 # MAVEN
-ARG MAVEN_VERSION=3.9.3
+ARG MAVEN_VERSION=3.9.6
 ENV USER_HOME_DIR /root
 # I use a proxy to download maven but the checksums come from the official apache site
-ARG SHA=400fc5b6d000c158d5ee7937543faa06b6bda8408caa2444a9c947c21472fde0f0b64ac452b8cec8855d528c0335522ed5b6c8f77085811c7e29e1bedbb5daa2
+ARG SHA=706f01b20dec0305a822ab614d51f32b07ee11d0218175e55450242e49d2156386483b506b3a4e8a03ac8611bae96395fd5eec15f50d3013d5deed6d1ee18224
 ARG MAVEN_HOME=/usr/share/maven
 ARG MAVEN_CONFIG="$USER_HOME_DIR/.m2"
 
 RUN apk add --no-cache curl tar procps \
  && mkdir -p /usr/share/maven/ref \
  && curl -fsSL -o /tmp/apache-maven.tar.gz "https://api.cyberjake.xyz/download_proxy/maven?version=${MAVEN_VERSION}" \
- && echo "${SHA} /tmp/apache-maven.tar.gz" | sha512sum -c - || true \
+ && echo "${SHA} /tmp/apache-maven.tar.gz" | sha512sum -c - \
  && tar -xzf /tmp/apache-maven.tar.gz -C /usr/share/maven --strip-components=1 \
  && rm -f /tmp/apache-maven.tar.gz \
  && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
