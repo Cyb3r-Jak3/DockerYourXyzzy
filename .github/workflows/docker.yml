@@ -59,7 +59,7 @@ jobs:
             org.opencontainers.image.vendor=cyb3rjak3
 
       - name: Build
-        uses: docker/bake-action@v4
+        uses: docker/bake-action@v5
         with:
           files: |
             ${{ steps.meta.outputs.bake-file }}
