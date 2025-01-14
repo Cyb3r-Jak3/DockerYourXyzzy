@@ -40,6 +40,8 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -59,8 +61,9 @@ jobs:
             org.opencontainers.image.vendor=cyb3rjak3
 
       - name: Build
-        uses: docker/bake-action@v5
+        uses: docker/bake-action@v6
         with:
+          source: .
           files: |
             ${{ steps.meta.outputs.bake-file }}
             ./docker-bake.hcl
